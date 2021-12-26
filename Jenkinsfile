@@ -28,11 +28,13 @@ node {
     // -------------------------------------------------------------------------
     
     stage('Test SFDX') {
+        echo "Testing SFDX"
         rc = command "${toolbelt}/sfdx force:org:list"
         if (rc != 0) {
             error 'Salesforce DX tests failed.'
         }
     }
+}
 
 def command(script) {
     if (isUnix()) {
