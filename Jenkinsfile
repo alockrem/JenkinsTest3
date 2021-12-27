@@ -34,6 +34,18 @@ node {
             error 'Salesforce DX tests failed.'
         }
     }
+
+    // -------------------------------------------------------------------------
+    // Deploy to DevHub
+    // -------------------------------------------------------------------------
+    
+    stage('Deply to DevHub') {
+        echo "Deploy to DevHub"
+        rc = command "${toolbelt}/sfdx force:source:deploy -p force-app -u DevHub"
+        if (rc != 0) {
+            error 'Deployment to DevHub failed.'
+        }
+    }
 }
 
 def command(script) {
