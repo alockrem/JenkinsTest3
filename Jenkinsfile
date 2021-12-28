@@ -8,6 +8,7 @@ node {
     def SF_USERNAME=env.SF_USERNAME
     def SERVER_KEY_CREDENTALS_ID=env.SERVER_KEY_CREDENTALS_ID
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://login.salesforce.com"
+    def KEY_FILE = "Test@tmp/secretFiles/def11ef2-4e07-4cb9-8575-6cca9f994c43/server.key"
 
     def toolbelt = tool 'toolbelt'
 
@@ -33,8 +34,8 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Authorize DevHub') {
-                echo "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
-                rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
+                echo "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${KEY_FILE} --setdefaultdevhubusername --setalias HubOrg"
+                rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${KEY_FILE} --setdefaultdevhubusername --setalias HubOrg"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
