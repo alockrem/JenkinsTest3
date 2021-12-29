@@ -25,7 +25,9 @@ node {
     // -------------------------------------------------------------------------
 
     stage('install sfdx cli') {
-        npm install --global sfdx-cli@latest-rc
+        rc = command "wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz"
+        rc = command "mkdir ~/sfdx"
+        rc = command "tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1"
     }
 
     // -------------------------------------------------------------------------
