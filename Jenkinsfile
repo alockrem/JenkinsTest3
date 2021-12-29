@@ -19,6 +19,14 @@ node {
     stage('checkout source') {
         checkout scm
     }
+   
+    // -------------------------------------------------------------------------
+    // Install SFDX CLI
+    // -------------------------------------------------------------------------
+
+    stage('install sfdx cli') {
+        npm install --global sfdx-cli@latest-rc
+    }
 
     // -------------------------------------------------------------------------
     // Run all the enclosed stages with access to the Salesforce
