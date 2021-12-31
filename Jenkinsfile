@@ -20,4 +20,7 @@ pipeline {
             }
         }
     }
+    post {
+        mail to: lockrem@gmail.com, subject: 'Pipeline failed...'
+    }
 }
