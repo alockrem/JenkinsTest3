@@ -15,6 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 unstash 'codebase'
+                sf 'sfdx force:org:list'
                 sh 'node --version'
             }
         }
