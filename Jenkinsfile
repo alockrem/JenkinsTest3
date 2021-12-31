@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'lockrem/entrypoint-test'
-            args '-it'
+            args '-i --entrypoint='
         }
     }
     stages {
