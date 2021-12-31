@@ -6,8 +6,13 @@ pipeline {
         }
     }
     stages {
+        stage('Generate') {
+            checkout scm
+            stash 'codebase'
+        }
         stage('Test') {
             steps {
+                unstash 'codebase'
                 sh 'node --version'
             }
         }
