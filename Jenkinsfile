@@ -7,8 +7,10 @@ pipeline {
     }
     stages {
         stage('Generate') {
-            checkout scm
-            stash 'codebase'
+            steps {
+                checkout scm
+                stash 'codebase'
+            }
         }
         stage('Test') {
             steps {
